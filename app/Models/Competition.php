@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Competitions extends Model
+class Competition extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Competitions extends Model
 
     public function competitionRound(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Rounds::class);
+        return $this->hasMany(Round::class);
     }
 
 }

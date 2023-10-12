@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CompetitorRound extends Model
+class CompetitorRound extends Pivot
 {
     use HasFactory;
 
@@ -13,14 +14,14 @@ class CompetitorRound extends Model
     protected $table = "competitor_round";
     public $timestamps = false;
 
-    public function competitor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function competitors(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Competitors::class);
+        return $this->belongsTo(Competitor::class);
     }
 
     public function competitionRound(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Rounds::class);
+        return $this->belongsTo(Round::class);
     }
 
 }
