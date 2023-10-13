@@ -14,9 +14,15 @@ class CompetitorController extends Controller
 
     public function createCompetitor(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'nationality' => 'required',
+            'birthday' => 'nullable',
+        ]);
+
         $competitor = new Competitor();
 
-        $competitor->fill($request->all());
+        $competitor->fill($validated);
         $competitor->save();
 
         return redirect('home');

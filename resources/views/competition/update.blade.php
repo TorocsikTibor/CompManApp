@@ -7,28 +7,29 @@
 
             <div id="saveform_errlist">
             </div>
-
             <div id="success_message">
             </div>
 
-            <h1>New competition</h1>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input class="form-control name" type="text">
-            </div>
-            <div class="form-group">
-                <label for="date">Date</label>
-                <input class="form-control date" type="date">
-            </div>
-            <input class="btn btn-primary add_competition" value="Save" type="button">
+            <h1>Update Competition</h1>
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control name" type="text" name="name" value="{{$competition->name}}">
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input class="form-control date" type="date" name="date" value="{{$competition->date}}">
+                </div>
+                <input class="btn btn-primary update_competition" type="submit" value="Update">
+
             <a class="btn btn-primary" href="{{ route('home') }}">Back</a>
         </div>
     </div>
 
-
     <script>
+
         $(document).ready(function () {
-            $(document).on('click', '.add_competition', function (e) {
+            $(document).on('click', '.update_competition', function (e) {
                 e.preventDefault();
 
                 let data = {
@@ -44,14 +45,14 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "competition/create",
+                    url: "<?php echo $competition->id; ?>",
                     data: data,
                     dataType: "json",
                     success: function (response) {
                         if (response.status == 200) {
                             $('#success_message').html("");
                             $('#success_message').addClass('alert alert-success');
-                            $('#success_message').text('Competition created successfully');
+                            $('#success_message').text('Competition updated successfully');
                         } else {
                             console.log(response.errors);
 

@@ -25,5 +25,6 @@
             <a class="btn btn-primary" href="{{ route('home') }}">Back</a>
         </div>
     </div>
+
 @endsection
 
