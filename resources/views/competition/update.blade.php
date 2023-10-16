@@ -27,7 +27,6 @@
     </div>
 
     <script>
-
         $(document).ready(function () {
             $(document).on('click', '.update_competition', function (e) {
                 e.preventDefault();
@@ -49,18 +48,16 @@
                     data: data,
                     dataType: "json",
                     success: function (response) {
-                        if (response.status == 200) {
-                            $('#success_message').html("");
-                            $('#success_message').addClass('alert alert-success');
-                            $('#success_message').text('Competition updated successfully');
-                        } else {
-                            console.log(response.errors);
-
+                        if(response.status == 400) {
                             $('#saveform_errlist').html("");
                             $('#saveform_errlist').addClass('alert alert-danger');
                             $.each(response.errors, function (key, err_values) {
-                                $('#saveform_errlist').append('<li>' + err_values + '</li>');
+                                $('#saveform_errlist').append('<li>'+err_values+'</li>');
                             });
+                        } else {
+                            $('#success_message').html("");
+                            $('#success_message').addClass('alert alert-success');
+                            $('#success_message').text('Competition updated successfully');
                         }
                     }
                 });

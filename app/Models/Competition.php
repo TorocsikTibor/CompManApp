@@ -12,6 +12,8 @@ class Competition extends Model
     protected $guarded = [];
     protected $table = "competitions";
 
+
+
     public function competitionRound(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Round::class);

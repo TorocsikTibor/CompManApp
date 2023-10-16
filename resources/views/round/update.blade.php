@@ -7,33 +7,41 @@
 
             <div id="saveform_errlist">
             </div>
-
             <div id="success_message">
             </div>
 
-            <h1>New competition</h1>
+            <h1>Update Round</h1>
+
             <div class="form-group">
                 <label for="name">Name</label>
-                <input class="form-control name" type="text">
+                <input class="form-control name" type="text" name="name" value="{{$round->name}}">
             </div>
             <div class="form-group">
-                <label for="date">Date</label>
-                <input class="form-control date" type="date">
+                <label>Select Category :</label><br/>
+                <select class="form-select competitors" name="competitors[]" multiple="">
+                    <div class="form-group">
+                        @foreach($competitors as $competitor)
+                            <option value="{{ $competitor->id }}">{{ $competitor->name }}</option>
+                        @endforeach
+                    </div>
+                </select>
             </div>
-            <input class="btn btn-primary add_competition" value="Save" type="button">
+
+            <input class="btn btn-primary update_round" type="submit" value="Update">
+
             <a class="btn btn-primary" href="{{ route('home') }}">Back</a>
         </div>
     </div>
 
-
     <script>
+
         $(document).ready(function () {
-            $(document).on('click', '.add_competition', function (e) {
+            $(document).on('click', '.update_round', function (e) {
                 e.preventDefault();
 
                 let data = {
                     'name': $('.name').val(),
-                    'date': $('.date').val(),
+                    'competitors': $('.competitors').val(),
                 }
 
                 $.ajaxSetup({
@@ -44,14 +52,14 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "competition/create",
+                    url: "<?php echo $round->id; ?>",
                     data: data,
                     dataType: "json",
                     success: function (response) {
-                        if (response.status == 201) {
+                        if (response.status == 200) {
                             $('#success_message').html("");
                             $('#success_message').addClass('alert alert-success');
-                            $('#success_message').text('Competition created successfully');
+                            $('#success_message').text('Round updated successfully');
                         } else {
                             $('#saveform_errlist').html("");
                             $('#saveform_errlist').addClass('alert alert-danger');
@@ -66,3 +74,4 @@
 
     </script>
 @endsection
+

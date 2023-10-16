@@ -15,4 +15,5 @@ class Competitor extends Model
     {
         return $this->belongsToMany(Round::class)->using(CompetitorRound::class);
     }
+
 }
