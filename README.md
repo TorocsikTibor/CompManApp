@@ -18,6 +18,6 @@ Telepítés:
 					email: user@test.com
 					jelszó: 123
 
-   Csak az admin tud létrehozni új versenyeket, köröket és versenyzőket.
+   Csak az admin tud létrehozni új versenyeket, köröket és versenyzőket. Teszt futtatásához "php artisan test" parancsot kell futtatni.
 
    
