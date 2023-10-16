@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competition;
+use App\Models\Round;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $competitions = Competition::all();
+        return view('home', ['competitions' => $competitions]);
     }
 }

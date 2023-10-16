@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->date('date')->unique();
+            $table->string('name');
+            $table->date('date');
             $table->timestamps();
+            $table->unique(['name', 'date']);
         });
     }
 

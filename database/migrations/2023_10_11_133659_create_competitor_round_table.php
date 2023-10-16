@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('competitor_id');
             $table->unsignedBigInteger('round_id');
-            $table->foreign('competitor_id')->references('id')->on('competitions')->onDelete('cascade');
+            $table->foreign('competitor_id')->references('id')->on('competitors')->onDelete('cascade');
             $table->foreign('round_id')->references('id')->on('rounds')->onDelete('cascade');
         });
     }

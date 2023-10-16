@@ -1,5 +1,8 @@
 <?php
 
+use App\Services\CompetitionService;
+use App\Services\CompetitorService;
+use App\Services\RoundService;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -182,7 +185,9 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+         'CompetitionService' => CompetitionService::class,
+         'CompetitorService' => CompetitorService::class,
+         'RoundService' => RoundService::class,
     ])->toArray(),
 
 ];
